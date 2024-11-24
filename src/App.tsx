@@ -4,6 +4,7 @@ import Loader from './common/Loader';
 import DefaultLayout from './layout/DefaultLayout';
 
 
+
 const PageTitle = lazy(() => import('./components/PageTitle'));
 const Body = lazy(() => import('./Body/pages/Body'));
 const ECommerce = lazy(() => import('./pages/Dashboard/ECommerce'));
@@ -24,6 +25,7 @@ const Sigup = lazy(() => import('./pages/Authentication/SignUp'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const BookingForm = lazy(() => import('./pages/BookingForm'))
 const BookingDetails = lazy(() => import('./pages/BookingDetails'))
+const RoomList = lazy(() => import('./pages/RoomList'))
 
 
 
@@ -124,12 +126,13 @@ function App() {
               </>
             }
           />
+
           <Route
-            path="rooms/non-ac-room"
+            path="Rooms"
             element={
               <>
-                <PageTitle title="Rooms | non-ac-room" />
-                <FormLayout />
+                <PageTitle title="Rooms" />
+                <RoomList />
               </>
             }
           />
