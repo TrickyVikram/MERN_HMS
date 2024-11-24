@@ -56,10 +56,12 @@ const Dashboard = () => {
         
         className="bg-blue-500 text-white px-4 py-2 dark:text-white rounded-lg hover:bg-blue-600">
           
-          <a href="/new-booking"> New Booking</a>
+          <a href="/dashboard/new-booking"> New Booking</a>
           
           
          </button>
+
+         
       </div>
 
       {/* Search Section */}
