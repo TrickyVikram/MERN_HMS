@@ -1,0 +1,84 @@
+[
+    { roomNo: '101', type: 'AC', available: true, students: [
+            { name: 'John Doe', contact: '1234567890'
+            }
+        ]
+    },
+    { roomNo: '102', type: 'Non-AC', available: true, students: []
+    },
+    { roomNo: '103', type: 'AC', available: false, students: [
+            { name: 'Jane Smith', contact: '0987654321'
+            }
+        ]
+    },
+    { roomNo: '104', type: 'Non-AC', available: true, students: [
+            { name: 'Mark Lee', contact: '1122334455'
+            }
+        ]
+    },
+    { roomNo: '105', type: 'AC', available: true, students: []
+    },
+    { roomNo: '106', type: 'Non-AC', available: true, students: [
+            { name: 'Alice Brown', contact: '2233445566'
+            }
+        ]
+    },
+    { roomNo: '107', type: 'AC', available: false, students: [
+            { name: 'David Clark', contact: '3344556677'
+            }
+        ]
+    },
+    { roomNo: '108', type: 'Non-AC', available: true, students: [
+            { name: 'Emily Davis', contact: '4455667788'
+            }
+        ]
+    },
+    { roomNo: '109', type: 'AC', available: true, students: []
+    },
+    { roomNo: '110', type: 'Non-AC', available: false, students: [
+            { name: 'Sarah Miller', contact: '5566778899'
+            }
+        ]
+    },
+    { roomNo: '111', type: 'AC', available: true, students: []
+    },
+    { roomNo: '112', type: 'Non-AC', available: true, students: [
+            { name: 'Michael Wilson', contact: '6677889900'
+            }
+        ]
+    },
+    { roomNo: '113', type: 'AC', available: false, students: [
+            { name: 'Lisa Taylor', contact: '7788990011'
+            }
+        ]
+    },
+    { roomNo: '114', type: 'Non-AC', available: true, students: []
+    },
+    { roomNo: '115', type: 'AC', available: true, students: [
+            { name: 'James Harris', contact: '8899001122'
+            }
+        ]
+    },
+    { roomNo: '116', type: 'Non-AC', available: true, students: [
+            { name: 'Sophia Martinez', contact: '9900112233'
+            }
+        ]
+    },
+    { roomNo: '117', type: 'AC', available: true, students: []
+    },
+    { roomNo: '118', type: 'Non-AC', available: true, students: [
+            { name: 'Daniel Garcia', contact: '1011122233'
+            }
+        ]
+    },
+    { roomNo: '119', type: 'AC', available: false, students: [
+            { name: 'Olivia Anderson', contact: '1122334455'
+            }
+        ]
+    },
+    { roomNo: '120', type: 'Non-AC', available: false, students: [
+            { name: 'William Lee', contact: '2233445566'
+            }
+        ]
+    },
+]
