@@ -7,6 +7,11 @@ const Dashboard = () => {
     { roomNo: '103', type: 'AC', available: false, students: [{ name: 'Jane Smith', contact: '0987654321' }] },
     { roomNo: '104', type: 'Non-AC', available: false, students: [{ name: 'Mark Lee', contact: '1122334455' }] },
     { roomNo: '117', type: 'AC', available: true, students: [] },
+
+
+
+
+
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
