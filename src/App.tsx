@@ -5,27 +5,21 @@ import DefaultLayout from './layout/DefaultLayout';
 
 
 
+
 const PageTitle = lazy(() => import('./components/PageTitle'));
 const Body = lazy(() => import('./Body/pages/Body'));
-const ECommerce = lazy(() => import('./pages/Dashboard/ECommerce'));
-const Calendar = lazy(() => import('./pages/Calendar'));
 const Profile = lazy(() => import('./pages/Profile'));
-const FormElements = lazy(() => import('./pages/Form/FormElements'));
-const FormLayout = lazy(() => import('./pages/Form/FormLayout'));
-const Tables = lazy(() => import('./pages/Tables'));
 const Settings = lazy(() => import('./pages/Settings'));
-const Chart = lazy(() => import('./pages/Chart'));
-const Alerts = lazy(() => import('./pages/UiElements/Alerts'));
-const Buttons = lazy(() => import('./pages/UiElements/Buttons'));
 const SignIn = lazy(() => import('./pages/Authentication/SignIn'));
 const SignUp = lazy(() => import('./pages/Authentication/SignUp'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const Sigup = lazy(() => import('./pages/Authentication/SignUp'))
-
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const BookingForm = lazy(() => import('./pages/BookingForm'))
 const BookingDetails = lazy(() => import('./pages/BookingDetails'))
 const RoomList = lazy(() => import('./pages/RoomList'))
+const StudentsData = lazy(() => import('./pages/StudentsData'))
+
+
 
 
 
@@ -118,16 +112,6 @@ function App() {
             }
           />
           <Route
-            path="rooms/ac-room"
-            element={
-              <>
-                <PageTitle title="Rooms | ac-room" />
-                <FormElements />
-              </>
-            }
-          />
-
-          <Route
             path="Rooms"
             element={
               <>
@@ -141,7 +125,7 @@ function App() {
             element={
               <>
                 <PageTitle title="studentsList" />
-                <Tables />
+                <StudentsData/>
               </>
             }
           />

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 interface Student {
   name: string;
   contact: string;
+  imgUrl:string;
 }
 
 interface Room {
@@ -27,45 +28,269 @@ const RoomsList: React.FC = () => {
   useEffect(() => {
     // Simulate fetching rooms from an API
     const fetchedRooms: Room[] = [
-      {
-        roomNo: 101,
-        roomType: "AC",
-        badType: "Single",
-        price: 4000,
-        amenities: [...commonAmenities, "Mini Fridge"],
-        occupancy: 0,
-        maxOccupancy: 1,
-        students: [],
-      },
-      {
-        roomNo: 102,
-        roomType: "Non-AC",
-        badType: "Double",
-        price: 2500,
-        amenities: [...commonAmenities],
-        occupancy: 1,
-        maxOccupancy: 2,
-        students: [{ name: "Alice Johnson", contact: "9876543210" }],
-      },
-      {
-        roomNo: 103,
-        roomType: "AC",
-        badType: "Suite",
-        price: 8000,
-        amenities: [...commonAmenities, "Private Balcony", "Jacuzzi"],
-        occupancy: 2,
-        maxOccupancy: 2,
-        students: [
-          { name: "John Smith", contact: "1234567890" },
-          { name: "Emma Brown", contact: "9876543211" },
-        ],
-      },
-    ];
+        {
+          "roomNo": 101,
+          "roomType": "AC",
+          "badType": "Single",
+          "price": 4000,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 0,
+          "maxOccupancy": 1,
+          "students": []
+        },
+        {
+          "roomNo": 102,
+          "roomType": "Non-AC",
+          "badType": "Double",
+          "price": 2500,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Alice Kumar",
+              "contact": "9876543210",
+              "imgUrl": "https://randomuser.me/api/portraits/women/1.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 103,
+          "roomType": "AC",
+          "badType": "Suite",
+          "price": 8000,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
+          "occupancy": 2,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "John Singh",
+              "contact": "1234567890",
+              "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+            },
+            {
+              "name": "Emma Sharma",
+              "contact": "9876543211",
+              "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 104,
+          "roomType": "Non-AC",
+          "badType": "Double",
+          "price": 3000,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Ravi Verma",
+              "contact": "9998765432",
+              "imgUrl": "https://randomuser.me/api/portraits/men/2.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 105,
+          "roomType": "AC",
+          "badType": "Single",
+          "price": 5000,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 0,
+          "maxOccupancy": 1,
+          "students": []
+        },
+        {
+          "roomNo": 106,
+          "roomType": "AC",
+          "badType": "Double",
+          "price": 3500,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 2,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Priya Iyer",
+              "contact": "7891234567",
+              "imgUrl": "https://randomuser.me/api/portraits/women/3.jpg"
+            },
+            {
+              "name": "Vikram Patel",
+              "contact": "9876541230",
+              "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 107,
+          "roomType": "Non-AC",
+          "badType": "Suite",
+          "price": 6000,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Karan Joshi",
+              "contact": "8897766554",
+              "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 108,
+          "roomType": "AC",
+          "badType": "Single",
+          "price": 4500,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 0,
+          "maxOccupancy": 1,
+          "students": []
+        },
+        {
+          "roomNo": 109,
+          "roomType": "Non-AC",
+          "badType": "Double",
+          "price": 2800,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Ananya Reddy",
+              "contact": "8798765432",
+              "imgUrl": "https://randomuser.me/api/portraits/women/4.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 110,
+          "roomType": "AC",
+          "badType": "Suite",
+          "price": 7000,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
+          "occupancy": 2,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Arun Soni",
+              "contact": "9988776655",
+              "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
+            },
+            {
+              "name": "Neha Thakur",
+              "contact": "9876655443",
+              "imgUrl": "https://randomuser.me/api/portraits/women/5.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 111,
+          "roomType": "Non-AC",
+          "badType": "Single",
+          "price": 3500,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 0,
+          "maxOccupancy": 1,
+          "students": []
+        },
+        {
+          "roomNo": 112,
+          "roomType": "AC",
+          "badType": "Double",
+          "price": 4200,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Sandeep Mehra",
+              "contact": "9088776655",
+              "imgUrl": "https://randomuser.me/api/portraits/men/6.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 113,
+          "roomType": "AC",
+          "badType": "Single",
+          "price": 5500,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 0,
+          "maxOccupancy": 1,
+          "students": []
+        },
+        {
+          "roomNo": 114,
+          "roomType": "Non-AC",
+          "badType": "Double",
+          "price": 2900,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 1,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Sita Devi",
+              "contact": "7890456123",
+              "imgUrl": "https://randomuser.me/api/portraits/women/6.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 115,
+          "roomType": "AC",
+          "badType": "Suite",
+          "price": 7600,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
+          "occupancy": 2,
+          "maxOccupancy": 2,
+          "students": [
+            {
+              "name": "Ajay Rathi",
+              "contact": "9888777777",
+              "imgUrl": "https://randomuser.me/api/portraits/men/7.jpg"
+            },
+            {
+              "name": "Priya Kumari",
+              "contact": "9777554433",
+              "imgUrl": "https://randomuser.me/api/portraits/women/7.jpg"
+            }
+          ]
+        },
+        {
+          "roomNo": 116,
+          "roomType": "Non-AC",
+          "badType": "Double",
+          "price": 3300,
+          "amenities": ["Dinner", "Lunch", "Breakfast"],
+          "occupancy": 0,
+          "maxOccupancy": 2,
+          "students": []
+        },
+        {
+          "roomNo": 117,
+          "roomType": "AC",
+          "badType": "Single",
+          "price": 4200,
+          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
+          "occupancy": 1,
+          "maxOccupancy": 1,
+          "students": [
+            {
+              "name": "Vikas Yadav",
+              "contact": "9988776655",
+              "imgUrl": "https://randomuser.me/api/portraits/men/8.jpg"
+            }
+          ]
+        }
+      ]
+      
 
     setTimeout(() => {
       setRooms(fetchedRooms);
       setLoading(false);
-    }, 1000); // Simulate a delay
+    }, 100); // Simulate a delay
   }, []);
 
   useEffect(() => {
