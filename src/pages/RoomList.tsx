@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 interface Student {
   name: string;
   contact: string;
-  imgUrl:string;
+  imgUrl: string;
 }
 
 interface Room {
   roomNo: number;
   roomType: string;
-  badType: string;
+  bedType: string;
   price: number;
   amenities: string[];
   occupancy: number; // Current occupancy
@@ -24,276 +25,27 @@ const RoomsList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [available, setAvailable] = useState<Room[]>([]);
   const [booked, setBooked] = useState<Room[]>([]);
+  const [error, setError] = useState<string | null>(null); // Error state
 
   useEffect(() => {
-    // Simulate fetching rooms from an API
-    const fetchedRooms: Room[] = [
-        {
-          "roomNo": 101,
-          "roomType": "AC",
-          "badType": "Single",
-          "price": 4000,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 0,
-          "maxOccupancy": 1,
-          "students": []
-        },
-        {
-          "roomNo": 102,
-          "roomType": "Non-AC",
-          "badType": "Double",
-          "price": 2500,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Alice Kumar",
-              "contact": "9876543210",
-              "imgUrl": "https://randomuser.me/api/portraits/women/1.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 103,
-          "roomType": "AC",
-          "badType": "Suite",
-          "price": 8000,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
-          "occupancy": 2,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "John Singh",
-              "contact": "1234567890",
-              "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
-            },
-            {
-              "name": "Emma Sharma",
-              "contact": "9876543211",
-              "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 104,
-          "roomType": "Non-AC",
-          "badType": "Double",
-          "price": 3000,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Ravi Verma",
-              "contact": "9998765432",
-              "imgUrl": "https://randomuser.me/api/portraits/men/2.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 105,
-          "roomType": "AC",
-          "badType": "Single",
-          "price": 5000,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 0,
-          "maxOccupancy": 1,
-          "students": []
-        },
-        {
-          "roomNo": 106,
-          "roomType": "AC",
-          "badType": "Double",
-          "price": 3500,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 2,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Priya Iyer",
-              "contact": "7891234567",
-              "imgUrl": "https://randomuser.me/api/portraits/women/3.jpg"
-            },
-            {
-              "name": "Vikram Patel",
-              "contact": "9876541230",
-              "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 107,
-          "roomType": "Non-AC",
-          "badType": "Suite",
-          "price": 6000,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Karan Joshi",
-              "contact": "8897766554",
-              "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 108,
-          "roomType": "AC",
-          "badType": "Single",
-          "price": 4500,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 0,
-          "maxOccupancy": 1,
-          "students": []
-        },
-        {
-          "roomNo": 109,
-          "roomType": "Non-AC",
-          "badType": "Double",
-          "price": 2800,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Ananya Reddy",
-              "contact": "8798765432",
-              "imgUrl": "https://randomuser.me/api/portraits/women/4.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 110,
-          "roomType": "AC",
-          "badType": "Suite",
-          "price": 7000,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
-          "occupancy": 2,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Arun Soni",
-              "contact": "9988776655",
-              "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
-            },
-            {
-              "name": "Neha Thakur",
-              "contact": "9876655443",
-              "imgUrl": "https://randomuser.me/api/portraits/women/5.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 111,
-          "roomType": "Non-AC",
-          "badType": "Single",
-          "price": 3500,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 0,
-          "maxOccupancy": 1,
-          "students": []
-        },
-        {
-          "roomNo": 112,
-          "roomType": "AC",
-          "badType": "Double",
-          "price": 4200,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Sandeep Mehra",
-              "contact": "9088776655",
-              "imgUrl": "https://randomuser.me/api/portraits/men/6.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 113,
-          "roomType": "AC",
-          "badType": "Single",
-          "price": 5500,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 0,
-          "maxOccupancy": 1,
-          "students": []
-        },
-        {
-          "roomNo": 114,
-          "roomType": "Non-AC",
-          "badType": "Double",
-          "price": 2900,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 1,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Sita Devi",
-              "contact": "7890456123",
-              "imgUrl": "https://randomuser.me/api/portraits/women/6.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 115,
-          "roomType": "AC",
-          "badType": "Suite",
-          "price": 7600,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Private Balcony", "Jacuzzi"],
-          "occupancy": 2,
-          "maxOccupancy": 2,
-          "students": [
-            {
-              "name": "Ajay Rathi",
-              "contact": "9888777777",
-              "imgUrl": "https://randomuser.me/api/portraits/men/7.jpg"
-            },
-            {
-              "name": "Priya Kumari",
-              "contact": "9777554433",
-              "imgUrl": "https://randomuser.me/api/portraits/women/7.jpg"
-            }
-          ]
-        },
-        {
-          "roomNo": 116,
-          "roomType": "Non-AC",
-          "badType": "Double",
-          "price": 3300,
-          "amenities": ["Dinner", "Lunch", "Breakfast"],
-          "occupancy": 0,
-          "maxOccupancy": 2,
-          "students": []
-        },
-        {
-          "roomNo": 117,
-          "roomType": "AC",
-          "badType": "Single",
-          "price": 4200,
-          "amenities": ["Dinner", "Lunch", "Breakfast", "Mini Fridge"],
-          "occupancy": 1,
-          "maxOccupancy": 1,
-          "students": [
-            {
-              "name": "Vikas Yadav",
-              "contact": "9988776655",
-              "imgUrl": "https://randomuser.me/api/portraits/men/8.jpg"
-            }
-          ]
-        }
-      ]
-      
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get("http://localhost:4500/api/rooms");
+        const roomsData = response.data.rooms;
+        setRooms(roomsData);
+        setError(null); // Clear any previous errors
+      } catch (err) {
+        setError("Failed to fetch room data. Please try again later.");
+      } finally {
+        setLoading(false); 
+      }
+    };
 
-    setTimeout(() => {
-      setRooms(fetchedRooms);
-      setLoading(false);
-    }, 100); // Simulate a delay
+    fetchRooms();
   }, []);
 
   useEffect(() => {
+    // Filter rooms based on occupancy
     setAvailable(rooms.filter((room) => room.occupancy < room.maxOccupancy));
     setBooked(rooms.filter((room) => room.occupancy === room.maxOccupancy));
   }, [rooms]);
@@ -321,6 +73,10 @@ const RoomsList: React.FC = () => {
 
   if (loading) {
     return <div className="text-center text-gray-500 mt-8">Loading rooms...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 mt-8">{error}</div>;
   }
 
   return (
@@ -358,14 +114,11 @@ const RoomsList: React.FC = () => {
           </thead>
           <tbody>
             {available.map((room, index) => (
-              <tr
-                key={room.roomNo}
-                className="hover:bg-gray-100 text-gray-700 text-sm font-medium"
-              >
+              <tr key={room.roomNo} className="hover:bg-gray-100 text-gray-700 text-sm font-medium">
                 <td className="px-6 py-4 border-b border-gray-300">{index + 1}</td>
                 <td className="px-6 py-4 border-b border-gray-300">{room.roomNo}</td>
                 <td className="px-6 py-4 border-b border-gray-300">{room.roomType}</td>
-                <td className="px-6 py-4 border-b border-gray-300">{room.badType}</td>
+                <td className="px-6 py-4 border-b border-gray-300">{room.bedType}</td>
                 <td className="px-6 py-4 border-b border-gray-300">₹{room.price}</td>
                 <td className="px-6 py-4 border-b border-gray-300">
                   <ul className="list-disc pl-5">
@@ -416,14 +169,11 @@ const RoomsList: React.FC = () => {
             </thead>
             <tbody>
               {booked.map((room, index) => (
-                <tr
-                  key={room.roomNo}
-                  className="hover:bg-gray-100 text-gray-700 text-sm font-medium"
-                >
+                <tr key={room.roomNo} className="hover:bg-gray-100 text-gray-700 text-sm font-medium">
                   <td className="px-6 py-4 border-b border-gray-300">{index + 1}</td>
                   <td className="px-6 py-4 border-b border-gray-300">{room.roomNo}</td>
                   <td className="px-6 py-4 border-b border-gray-300">{room.roomType}</td>
-                  <td className="px-6 py-4 border-b border-gray-300">{room.badType}</td>
+                  <td className="px-6 py-4 border-b border-gray-300">{room.bedType}</td>
                   <td className="px-6 py-4 border-b border-gray-300">₹{room.price}</td>
                   <td className="px-6 py-4 border-b border-gray-300">
                     <ul className="list-disc pl-5">
