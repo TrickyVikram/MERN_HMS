@@ -85,7 +85,7 @@ function BookingForm() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-              Member Name
+              Name
             </label>
             <input
               type="text"
