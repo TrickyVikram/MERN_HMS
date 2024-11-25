@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface Student {
   name: string;
   contact: string;
@@ -51,13 +52,23 @@ const RoomsList: React.FC = () => {
   }, [rooms]);
 
   const handleBookNow = (roomNo: number) => {
+    toast.success("Wait a few seconds");
     setRooms((prevRooms) =>
+      
       prevRooms.map((room) =>
         room.roomNo === roomNo && room.occupancy < room.maxOccupancy
           ? { ...room, occupancy: room.occupancy + 1 }
           : room
       )
     );
+
+    setTimeout(() => {
+      window.open("https://pages.razorpay.com/pl_NpwV7db9NsOHaI/view", "_blank");
+    }, 2500);
+
+
+
+    
   };
 
   const StatusBadge: React.FC<{ status: "Available" | "Full" | "Partial" }> = ({
@@ -191,6 +202,7 @@ const RoomsList: React.FC = () => {
           </table>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };
