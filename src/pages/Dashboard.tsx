@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Dashboard = () => {
-  const [rooms, setRooms] = useState();
+  interface Student {
+    name: string;
+    contact: string;
+  }
   
+  interface Room {
+    roomNo: number;
+    roomType: string;
+    occupancy: number;
+    maxOccupancy: number;
+    students: Student[];
+  }
+  
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -14,31 +30,24 @@ const Dashboard = () => {
       } catch (err) {
         setError("Failed to fetch room data. Please try again later.");
       } finally {
-        setLoading(false); // Set loading to false after data is fetched or error occurs
+        setLoading(false);
       }
     };
 
     fetchRooms();
   }, []);
 
-
-
-
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter rooms based on search (only available rooms)
   const filteredRooms = rooms.filter(
     (room) =>
       (room.roomNo.toString().includes(searchTerm) ||
-        room.roomType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        room.students.some(
-          (student) =>
-            student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            student.contact.includes(searchTerm)
-        )) && room.occupancy < room.maxOccupancy // Check if the room is available
+      room.roomType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      room.students.some(
+        (student) =>
+          student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          student.contact.includes(searchTerm)
+      )) && room.occupancy < room.maxOccupancy
   );
 
-  // Flatten all students with room info for the student list
   const allStudents = rooms.flatMap((room) =>
     room.students.map((student) => ({
       ...student,
@@ -47,7 +56,6 @@ const Dashboard = () => {
     }))
   );
 
-  // Filter students based on search
   const filteredStudents = allStudents.filter(
     (student) =>
       student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -65,7 +73,7 @@ const Dashboard = () => {
       {/* Dashboard Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Hostel Management Dashboard</h1>
-        <button className="bg-blue-500 text-white px-4 py-2 dark:text-white rounded-lg hover:bg-blue-600">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
           <a href="/dashboard/new-booking">New Booking</a>
         </button>
       </div>
