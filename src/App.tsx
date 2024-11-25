@@ -5,6 +5,11 @@ import DefaultLayout from './layout/DefaultLayout';
 
 
 
+const PaymentPage = lazy(() => import('./pages/payment/PaymentComponent')); // New page for payment
+const PaymentSuccess = lazy(() => import('./pages/payment/PaymentSuccess')); // Payment success page
+const PaymentFailure = lazy(() => import('./pages/payment/PaymentFailure'));
+
+
 
 const PageTitle = lazy(() => import('./components/PageTitle'));
 const Body = lazy(() => import('./Body/pages/Body'));
@@ -138,8 +143,36 @@ function App() {
               </>
             }
           />
-
-        </Route>
+             <Route
+            path="payment"
+            element={
+              <>
+                <PageTitle title="Payment" />
+                <PaymentPage />
+              </>
+            }
+          />
+          <Route
+            path="payment/success"
+            element={
+              <>
+                <PageTitle title="Payment Success" />
+                <PaymentSuccess />
+              </>
+            }
+          />
+          <Route
+            path="payment/failure"
+            element={
+              <>
+                <PageTitle title="Payment Failure" />
+                <PaymentFailure />
+              </>
+            }
+          />
+       
+          
+          </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
