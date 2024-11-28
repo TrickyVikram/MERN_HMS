@@ -19,3 +19,9 @@ Default build output directory: /dist
 This command will generate a dist as build folder in the root of your template that you can upload to your server.
 
 # MERN_HMS
+<div  style="display:flax;" >
+<img src="" alt="img" >
+<img src="" alt="img" >
+
+
+</div >
