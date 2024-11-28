@@ -20,8 +20,9 @@ This command will generate a dist as build folder in the root of your template t
 
 # MERN_HMS
 <div  style="display:flax;" >
-<img src="" alt="img" >
-<img src="" alt="img" >
+<img src="https://github.com/TrickyVikram/MERN_HMS/blob/main/Img/img1.png" alt="img" >
+<img src="https://github.com/TrickyVikram/MERN_HMS/blob/main/Img/img7.png" alt="img" >
+<img src="https://github.com/TrickyVikram/MERN_HMS/blob/main/Img/img3.png" alt="img" >
 
 
 </div >
